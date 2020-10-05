@@ -5,7 +5,6 @@ import Login from './Components/User/Login';
 import axios from 'axios';
 import './app.css';
 import Pages from './Components/PostsPage/Pages'
-import ListReservation from './Components/PostsPage/ListReservation'
 import Home from './Components/Home/Home'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -75,7 +74,6 @@ class App extends React.Component{
           <Route path="/homepage" exact={true} component={ Home} />
           <Route path="/images" exact={true} component={ ImagesPage} />
           <Route path="/posts/:id" exact={true} component={ PagesDetails} />
-          <Route path="/reservation/view" component={ ListReservation } />
           <Route path="/posts" component={ Pages } />
           <Route path="/users/register" component={ Register } />
           <Route path="/users/logout" render={(props) => {
