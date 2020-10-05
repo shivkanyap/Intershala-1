@@ -13,3 +13,29 @@
 .logout {
   padding-left: 400px;
 }
+
+.search {
+  place-content: left;
+}
+.result {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 30px;
+}
+.resultbtn {
+  float: right;
+  background: var(--cyan);
+  padding: 2px;
+  margin: 13px;
+}
+.imge{
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  padding-top: 5%;
+  letter-spacing: 1px;
+}
+.hometext{
+  margin-left:15px;
+  color:white
+}

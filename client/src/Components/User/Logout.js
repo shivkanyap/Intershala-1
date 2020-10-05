@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import  {logoutUser}  from '../../actions/userActions';
 import {setAuthenticated} from '../../actions/userActions';
-import React, { useEffect, Component } from 'react'
+import React, { useEffect } from 'react'
 
 const Logout =(props)=>  {
      

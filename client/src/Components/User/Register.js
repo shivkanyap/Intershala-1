@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 class Register extends React.Component {
     constructor() {
         super()
@@ -10,7 +12,8 @@ class Register extends React.Component {
             email: '',
             password: '',
             conformpassword:'',
-            notice:''
+            notice:'',
+            error:false
         }
     }
 
@@ -20,6 +23,30 @@ class Register extends React.Component {
             [e.target.name]: e.target.value
         }))
     }
+    errMessage=()=>{
+        if(
+            this.state.username ==="" &&
+            this.state.email=== "" &&
+            this.state.password === "" &&
+            this.state.conformpassword=== ""
+        ){
+
+            this.setState({error:true})
+        }
+    }
+    notify = () => {
+        toast.success("Registered Successfully", {
+            position: "top-right",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true, 
+            draggable: true,
+            progress: undefined
+        });
+        this.setState({error:false})
+        
+      };
 
     handleSubmit = (e) => {
     e.preventDefault()
@@ -52,6 +79,10 @@ class Register extends React.Component {
             <div>
                 <div className="col-md-6 formheader">
                     <h2 className="pt-3 pb-3">Register with us </h2>
+
+                
+                    <ToastContainer />
+                    {this.state.error?(<div style={{color:'red' ,textAlign:'center'}}>All fields are required</div>):null}
                 <Form onSubmit={this.handleSubmit}>
                     <div>
                     <FormGroup row>
@@ -71,7 +102,6 @@ class Register extends React.Component {
                         </Col>
                     </FormGroup>
                     </div>
-                   
                     <div>
                     <FormGroup row>
                         <Label sm={2} className="headerlabel">
@@ -122,7 +152,13 @@ class Register extends React.Component {
                         </FormGroup>
                     </div>
                     {this.state.notice && <p className="text text-danger"> {this.state.notice} </p>}
-                    <Button className="submit" color="primary">Submit</Button>
+                    <Button className="submit" color="primary"
+                    onClick={
+                        this.state.username!==""&&
+                        this.state.email!==""&&
+                        this.state.password!==""&&
+                        this.state.conformpassword!==""?this.notify:this.errMessage
+                    }>Submit</Button>
                 </Form>
             </div>
         </div> 

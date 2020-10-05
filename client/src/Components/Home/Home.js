@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-
+import "../../app.css"
 class Home extends React.Component{
 
 
@@ -28,12 +28,10 @@ class Home extends React.Component{
         console.log(this.state.homepage,'innn ')
         return(
             <div style={{backgroundImage:`url(${this.state.homepage.url})` ,
-            backgroundPosition: 'center',
-            backgroundSize: '100%',
-            backgroundRepeat: 'no-repeat'}}>
+           }} className="imge">
                 
                 {/* <img src={this.state.homepage.url} alt="APOd od today" / > */}
-                <h4 style={{color:'white'}}>{this.state.homepage.explanation}</h4>
+                <h4 className="hometext">{this.state.homepage.explanation}</h4>
                 
             </div>
         )

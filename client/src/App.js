@@ -2,17 +2,14 @@ import React from 'react';
 import {BrowserRouter,Link,Route,Switch} from 'react-router-dom';
 import Register from './Components/User/Register';
 import Login from './Components/User/Login';
-import axios from 'axios';
 import './app.css';
 import Pages from './Components/PostsPage/Pages'
 import Home from './Components/Home/Home'
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import  {logoutUser}  from './actions/userActions';
 import Logout from './Components/User/Logout'
 import PagesDetails from './Components/PostsPage/PagesDetails'
-import ImagesPage from './Components/ImagesPage/ImagesPage'
-
+import ImagesPage from './Components/ImagesPages/ImagesPage'
+import AlbumsPage from './Components/AlbumsPage/AlbumsPage'
+import AlbumsDetails from './Components/AlbumsPage/AlbumsDetails'
 import store from './store';
 import { Provider } from 'react-redux';
 
@@ -54,13 +51,13 @@ class App extends React.Component{
                   <li className="nav-item ml-4"><Link to="/homepage" >Home</Link></li>
                   <li className="nav-item ml-4"><Link to="/posts" >Post-Page</Link></li>
                   <li className="nav-item ml-4"><Link to="/images" >Images Page</Link></li>
+                  <li className="nav-item ml-4"><Link to="/albums" >Album Page</Link></li>
                   <li className="nav-item ml-4"><Link to="/users/logout" >Logout</Link></li>
                   </div>
               
 
                   ) : (
                   <div className="navitems1">
-                    {/* <li className="nav-item ml-5"><Link to="/" >Home</Link></li> */}
                     <li className="nav-item ml-5"><Link to="/users/register">Register</Link></li>
                     <li className="nav-item ml-5"><Link to="/users/login">Login</Link></li>
                     
@@ -72,9 +69,12 @@ class App extends React.Component{
           </div>
           <Switch>
           <Route path="/homepage" exact={true} component={ Home} />
+          <Route path="/albums" exact={true} component={ AlbumsPage} />
           <Route path="/images" exact={true} component={ ImagesPage} />
           <Route path="/posts/:id" exact={true} component={ PagesDetails} />
+          <Route path="/albums/:id" exact={true} component={ AlbumsDetails} />
           <Route path="/posts" component={ Pages } />
+          
           <Route path="/users/register" component={ Register } />
           <Route path="/users/logout" render={(props) => {
               return <Logout {...props} handleAuthentication={this.handleAuthentication} />
@@ -83,23 +83,13 @@ class App extends React.Component{
               return <Login {...props} handleAuthentication={this.handleAuthentication} />
           }} />
 
-          
-
         </Switch>
-       
-       
-        </div>
-          
-        
+        </div> 
       </BrowserRouter>  
-      
-      
       </Provider>
     )
     
   }
 }
-
-
 export default App;
-//export default connect(mapStateToProps, { logoutUser })(App);
+

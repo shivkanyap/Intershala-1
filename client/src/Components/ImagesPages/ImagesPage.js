@@ -1,13 +1,13 @@
 import axios from 'axios';
 import PagesCard from '../PostsPage/PagesCard';
-import Unsplash, { toJson } from 'unsplash-js';
-import React, { Component, useState, useEffect } from 'react';
+import React, {  useState, useEffect } from 'react';
+import  "../../app.css"
 
 const ImagesPage = props => {
   const [images, setImages] = useState([]);
   const [keyword, setKeyword] = useState('');
   const [isLoaded, setIsloaded] = useState(false);
-  let [counter,setCounter]=useState(0)
+  let [counter]=useState(0)
 
   useEffect(() => {
     axios
@@ -44,7 +44,7 @@ const ImagesPage = props => {
         }
       )
       .then(response => {
-        console.log(response.data.results);
+        
         setIsloaded(true);
         setImages(response.data.results)
         
@@ -64,8 +64,8 @@ const ImagesPage = props => {
       {isLoaded ? (
 
         <div>
-            {<h1>Search results for {keyword}</h1> }
-            <button type="button" onClick={handleClick}>Go back to search</button>
+            {<h1 className="result">Search results for {keyword}</h1> }
+            <button type="button" onClick={handleClick} className="resultbtn">Go back to search</button>
         {
             
 
@@ -79,13 +79,14 @@ const ImagesPage = props => {
 
         
       ) : (
-        <div className='row'>
+        <div className='row search pt-4 ml-3'>
           <form onSubmit={handleSubmit}>
             <div className='form-group'>
               <label>
                 Search keyword
                 <input
                   type='text'
+                  size="xl"
                   name='keyword to search'
                   value={keyword}
                   onChange={handleChange}
