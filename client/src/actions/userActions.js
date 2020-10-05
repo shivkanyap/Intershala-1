@@ -1,5 +1,6 @@
 import { FETCH_USER } from './types';
 import { LOGOUT_USER } from './types';
+import {SET_AUTHENTICATED} from './types'
 
 import axios from 'axios'
 import jwt_decode from 'jwt-decode' 
@@ -24,6 +25,18 @@ export const fetchUser=(formData)=>dispatch=>{
   })
 
 }
+
+
+export const setAuthenticated=(boolValue)=>dispatch=>{  
+  
+    dispatch({
+      type: SET_AUTHENTICATED,
+      payload: boolValue
+    })
+
+}
+
+
 
 export const logoutUser=()=>dispatch=>{
   axios.delete('http://localhost:3005/users/logout')

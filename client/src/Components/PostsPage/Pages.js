@@ -6,7 +6,8 @@ class Pages extends React.Component{
     constructor(){
         super()
         this.state={
-            posts:[]
+            posts:[],
+            photos:[]
         }
     }
     componentDidMount(){
@@ -18,14 +19,34 @@ class Pages extends React.Component{
             }))
         })
         .catch(err=>{console.log(err)})
+
+        axios.get(' https://jsonplaceholder.typicode.com/photos')
+        .then(response=>{
+            console.log(response.data,'in res')
+            this.setState(()=>({
+                photos:response.data
+            }))
+        })
+        .catch(err=>{console.log(err)})
+
+
     }
     render(){
+        console.log(this.state.photos,'pics')
         return(
             // console.log(this.state.posts,'in post')
             <div>
-               {this.state.posts.map(item=>{
-                   return <PagesCard image="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" />
+               {this.state.posts.slice(0,100).map(item=>{
+                   return <PagesCard  image="https://via.placeholder.com/600/d32776" id={item.id} title={item.title} body={item.body}/>
+                   
                })}
+               {/* {
+                        this.state.photos.slice(0,100).map(item=>{
+                            return <PagesCard image={item.url} id={item.id} title={item.title}/>
+                        })
+                } */}
+
+
             </div>
             
         )
